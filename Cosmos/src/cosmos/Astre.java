@@ -5,12 +5,22 @@
 
 package cosmos;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author marieetdavid
+ * @author Marie Cogis David Goncalves
  */
-public class Astre {
+public abstract class Astre {
+    ArrayList<Satellite> listSatelitte;
+    Position pos;
 
+    public Astre(ArrayList<Satellite> listSatelitte, Position pos) {
+        this.listSatelitte = listSatelitte;
+        this.pos = pos;
+    }
+    
+    
 
 
 }

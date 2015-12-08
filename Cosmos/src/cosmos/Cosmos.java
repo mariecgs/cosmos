@@ -7,7 +7,7 @@ package cosmos;
 
 /**
  *
- * @author marieetdavid
+ * @author Marie Cogis David Goncalves
  */
 public class Cosmos {
 
