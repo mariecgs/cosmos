@@ -14,12 +14,12 @@ public class Satellite extends Astre {
     double petitAxe;
     int periodeRotation;
     int t;
-    public Satellite() {
-        super();
-        grandAxe = 1;
-        petitAxe = 1;
-        periodeRotation = 2;
-        t = 0;
+    public Satellite(String image) { //A MODIF !
+        super(image);
+        this.grandAxe = 1;
+        this.petitAxe = 1;
+        this.periodeRotation = 2;
+        this.t = 0;
     }
     
     @Override

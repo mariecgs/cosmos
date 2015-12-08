@@ -13,9 +13,11 @@ import java.util.ArrayList;
  */
 public abstract class Astre {
     ArrayList<Satellite> listSatelitte;
-
-    public Astre() {
+    String image;
+    
+    public Astre(String image) {
         this.listSatelitte = new ArrayList();
+        this.image = image;
     }
     
     protected Position getPosition(Astre a){
