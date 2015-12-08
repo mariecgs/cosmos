@@ -10,5 +10,15 @@ package cosmos;
  * @author Marie Cogis David Goncalves
  */
 public class Etoile extends Astre {
+    Position pos;
     
+    public Etoile(Position pos) {
+        super();
+        this.pos=pos;
+    }
+    
+    @Override
+    protected Position getPosition(Astre a){
+        return this.pos;
+    }
 }

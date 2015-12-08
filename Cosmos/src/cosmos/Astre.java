@@ -13,11 +13,13 @@ import java.util.ArrayList;
  */
 public abstract class Astre {
     ArrayList<Satellite> listSatelitte;
-    Position pos;
 
-    public Astre(ArrayList<Satellite> listSatelitte, Position pos) {
-        this.listSatelitte = listSatelitte;
-        this.pos = pos;
+    public Astre() {
+        this.listSatelitte = new ArrayList();
+    }
+    
+    protected Position getPosition(Astre a){
+        return new Position(0,0);
     }
     
     
