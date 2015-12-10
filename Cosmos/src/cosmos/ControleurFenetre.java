@@ -7,6 +7,7 @@ package cosmos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class ControleurFenetre implements ActionListener {
     private Fenetre window;
-
+    ArrayList<Etoile> listEtoile;
+    
     public ControleurFenetre(Fenetre window) {
         this.window = window;
     }
@@ -23,7 +25,7 @@ public class ControleurFenetre implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
        int btn=window.quelItem(ae);
-       CreationAstre fen;
+       CreationAstre creation;
        switch(btn){
            //OUVRIR
            case 0 :
@@ -36,7 +38,13 @@ public class ControleurFenetre implements ActionListener {
                break;
             //CREER ASTRE
             case 3 :
-                fen = new CreationAstre(null,"Création Astre",true);
+                creation = new CreationAstre(null,"Création Astre",true);
+                Astre a=creation.ajoutAstre();
+                if(a.getClass()==Etoile.class){ //Etoile
+                    listEtoile.add((Etoile) a);
+                }else{
+                //satelitte 
+                }
                break;
             //SUPPRIMER ASTRE
             case 4 :
