@@ -17,8 +17,9 @@ public class ControleurFenetre implements ActionListener {
     private Fenetre window;
     ArrayList<Etoile> listEtoile;
     
-    public ControleurFenetre(Fenetre window) {
+    public ControleurFenetre(Fenetre window, ArrayList<Etoile> listEtoile) {
         this.window = window;
+        this.listEtoile = listEtoile;
     }
 
     @Override

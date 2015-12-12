@@ -12,8 +12,8 @@ package cosmos;
 public class Etoile extends Astre {
     Position pos;
     
-    public Etoile(String image, Position pos) {
-        super(image);
+    public Etoile(String nom, String image, Position pos) {
+        super(nom,image);
         this.pos=pos;
     }
     

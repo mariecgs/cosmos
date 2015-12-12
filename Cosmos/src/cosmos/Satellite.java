@@ -5,29 +5,36 @@
  */
 package cosmos;
 
+import java.util.Date;
+
 /**
  *
  * @author Marie Cogis David Goncalves
  */
 public class Satellite extends Astre {
-    double grandAxe;
-    double petitAxe;
+    int grandAxe;
+    int petitAxe;
     int periodeRotation;
-    int t;
-    public Satellite(String image) { //A MODIF !
-        super(image);
-        this.grandAxe = 1;
-        this.petitAxe = 1;
-        this.periodeRotation = 2;
-        this.t = 0;
+
+    public Satellite(String nom,String image,int grandAxe,int petitAxe,int periodeRotation) { 
+        super(nom,image);
+        this.grandAxe = grandAxe;
+        this.petitAxe = petitAxe;
+        this.periodeRotation = periodeRotation;
     }
     
+    /**
+     *
+     * @param a
+     * @return
+     */
     @Override
     protected Position getPosition(Astre a){
+        Date date=new Date();
         Position posAstre=a.getPosition(a);
         Position posSatellite = new Position();
-        posSatellite.x=(grandAxe/2) * Math.cos(t/periodeRotation) + posAstre.x;
-        posSatellite.y=(petitAxe/2) * Math.sin(t/periodeRotation) + posAstre.y;
+        posSatellite.x=(int) ((grandAxe/2) * Math.cos(date.getTime()/periodeRotation) + posAstre.x);
+        posSatellite.y=(int) ((petitAxe/2) * Math.sin(date.getTime()/periodeRotation) + posAstre.y);
         return posSatellite;
     }
 }

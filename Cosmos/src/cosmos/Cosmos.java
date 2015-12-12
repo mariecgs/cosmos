@@ -6,6 +6,7 @@
 package cosmos;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +20,10 @@ public class Cosmos {
     public static void main(String[] args) throws IOException 
     {
         Fenetre test=new Fenetre();
+        
+        ArrayList<Etoile> listEtoile = new ArrayList();
+        listEtoile.add(new Etoile("Soleil","",new Position(200,200)));
+        listEtoile.get(0).listSatelitte.add(new Satellite("Terre","",50,50,999));
     }
 
 }

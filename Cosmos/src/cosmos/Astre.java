@@ -14,9 +14,11 @@ import java.util.ArrayList;
 public abstract class Astre {
     ArrayList<Satellite> listSatelitte;
     String image;
+    String nom;
     
-    public Astre(String image) {
+    public Astre(String nom, String image) {
         this.listSatelitte = new ArrayList();
+        this.nom = nom;
         this.image = image;
     }
     

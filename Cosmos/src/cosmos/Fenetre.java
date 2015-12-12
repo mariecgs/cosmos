@@ -11,6 +11,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -35,10 +37,10 @@ public class Fenetre extends JFrame {
     JMenuItem supprimer = new JMenuItem("Supprimer un astre");
 
 
-    public Fenetre() throws IOException {
+    public Fenetre() throws IOException, InterruptedException {
         
         String fond="img/cosmos.jpg";
-        
+        ArrayList<Etoile> listEtoile = new ArrayList();
         this.setSize(1000, 500);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,8 +50,11 @@ public class Fenetre extends JFrame {
         
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(0, 0, (int)dimension.getWidth(), (int)dimension.getHeight());
-        this.panneau = new BackgroundPanel(ImageIO.read(new File(fond)));
+        this.panneau = new BackgroundPanel(ImageIO.read(new File(fond)),this.getWidth(),this.getHeight(),listEtoile);
         //this.top.setBackground(Color.yellow);
+        listEtoile.add(new Etoile("Soleil","img/soleil.png",new Position(200,200)));
+        listEtoile.get(0).listSatelitte.add(new Satellite("Terre","img/terre.png",200,100,999));
+        
         this.panneau.setLayout(null); 
         setContentPane(this.panneau);
         this.menu1.add(this.ouvrir);
@@ -61,17 +66,29 @@ public class Fenetre extends JFrame {
         this.menuBar.add(this.menu2);
         this.setJMenuBar(menuBar);
         this.setVisible(true);
-        ControleurFenetre control=new ControleurFenetre(this);
+        ControleurFenetre control=new ControleurFenetre(this,listEtoile);
         ouvrir.addActionListener(control);
         enregistrer.addActionListener(control);
         quitter.addActionListener(control);
         creer.addActionListener(control);
         supprimer.addActionListener(control);
-        this.setVisible(true);      
+        this.setVisible(true); 
+        listEtoile.get(0).listSatelitte.add(new Satellite("Venus","img/venus.png",100,200,999));
+        while(true){
+            repaint();
 
+        }
         
     }
-
+        
+   /* public void paintComponent(Graphics g) throws IOException{
+        super.paintComponents(g);
+        String fond="C:/Users/18gon_000/Documents/NetBeansProjects/Cosmos/Cosmos/img/cosmos.jpg";
+        BufferedImage img;
+        img = ImageIO.read(new File(fond));
+        g.drawImage(img, 0, 0, this.panneau);
+    }*/
+   
     int quelItem(ActionEvent ae) {
         JMenuItem item=(JMenuItem)ae.getSource();
         if(item==ouvrir){

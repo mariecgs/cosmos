@@ -10,10 +10,10 @@ package cosmos;
  * @author Marie Cogis David Goncalves
  */
 public class Position {
-    double x;
-    double y;
+    int x;
+    int y;
 
-    public Position(double x, double y) {
+    public Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
