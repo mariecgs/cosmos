@@ -35,16 +35,17 @@ public class ControleurFenetre implements ActionListener {
                break;
             //QUITTER
             case 2 :
+               System.exit(0);
                break;
             //CREER ASTRE
             case 3 :
-                creation = new CreationAstre(null,"Création Astre",true);
-                Astre a=creation.ajoutAstre();
+                creation = new CreationAstre(null,"Création Astre",true,listEtoile);
+                /*Astre a=creation.ajoutAstre();
                 if(a.getClass()==Etoile.class){ //Etoile
                     listEtoile.add((Etoile) a);
                 }else{
                 //satelitte 
-                }
+                }*/
                break;
             //SUPPRIMER ASTRE
             case 4 :

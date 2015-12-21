@@ -17,7 +17,7 @@ public class Cosmos {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException 
+    public static void main(String[] args) throws IOException, InterruptedException 
     {
         Fenetre test=new Fenetre();
         

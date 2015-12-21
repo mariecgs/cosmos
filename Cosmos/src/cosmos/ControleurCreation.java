@@ -33,6 +33,13 @@ public class ControleurCreation implements ActionListener {
                 window.y.setEnabled(true);
                 window.xLabel.setEnabled(true);
                 window.yLabel.setEnabled(true);
+                window.tree.setEnabled(false);
+                window.aLabel.setEnabled(false);
+                window.a.setEnabled(false);
+                window.bLabel.setEnabled(false);
+                window.b.setEnabled(false);
+                window.pLabel.setEnabled(false);
+                window.p.setEnabled(false);
                 break;
             //SATELLITE
             case 1 :
@@ -40,6 +47,14 @@ public class ControleurCreation implements ActionListener {
                 window.y.setEnabled(false);
                 window.xLabel.setEnabled(false);
                 window.yLabel.setEnabled(false);
+                window.tree.setEnabled(true);
+                window.aLabel.setEnabled(true);
+                window.a.setEnabled(true);
+                window.bLabel.setEnabled(true);
+                window.b.setEnabled(true);
+                window.pLabel.setEnabled(true);
+                window.p.setEnabled(true);
+                
                 break;
             //Image
             case 2 :
@@ -59,13 +74,15 @@ public class ControleurCreation implements ActionListener {
                 if(window.nom.getText()==null||window.x.getText()==null||window.y.getText()==null){
                     //ERREUR
                 }else{
+                    //window.setVisible(false);
+                    window.dispose();
                     window.setVisible(false);
-                    //window.dispose();
                 }
                 break;
             //Annuler
             case 4 :
-
+                window.dispose();
+                window.setVisible(false);
                 break;
         }
        

@@ -10,19 +10,21 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import static javax.swing.SwingConstants.LEFT;
+import javax.swing.JTree;
 import static javax.swing.SwingConstants.RIGHT;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
@@ -34,13 +36,16 @@ public class CreationAstre extends JDialog{
     JTextField nom, x, y, a, b, p;
     JButton image, valider, annuler;
     JFrame parent;
+    JTree tree;
+    ArrayList<Etoile> liste;
     
-    public CreationAstre(JFrame parent, String title, boolean modal){
+    public CreationAstre(JFrame parent, String title, boolean modal,ArrayList liste){
         super(parent, title, modal);
         this.parent=parent;
         this.setSize(550, 500);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.liste=liste;
         //this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         this.initComponent();
         
@@ -53,7 +58,7 @@ public class CreationAstre extends JDialog{
         nomLabel.setPreferredSize(new Dimension(100,25));
         JPanel panNom= new JPanel();
         panNom.setBackground(Color.white);
-        panNom.setPreferredSize(new Dimension(220, 60));
+        panNom.setPreferredSize(new Dimension(220, 30));
         panNom.setBorder(BorderFactory.createTitledBorder("Nom de l'astre"));
         panNom.add(nomLabel);
         panNom.add(nom);
@@ -61,7 +66,7 @@ public class CreationAstre extends JDialog{
         //Type
         JPanel panType= new JPanel();
         panType.setBackground(Color.white);
-        panType.setPreferredSize(new Dimension(220, 60));
+        panType.setPreferredSize(new Dimension(220, 30));
         panType.setBorder(BorderFactory.createTitledBorder("Type de l'astre"));
         etoile = new JRadioButton("Etoile");
         satellite = new JRadioButton("Satellite");
@@ -72,13 +77,36 @@ public class CreationAstre extends JDialog{
         panType.add(satellite);
         
         //Satellite
+        aLabel = new JLabel("demi-grand axe : ");
+        bLabel = new JLabel("demi-petit axe : ");
+        pLabel = new JLabel("periode : ");
+        aLabel.setHorizontalAlignment(RIGHT);
+        bLabel.setHorizontalAlignment(RIGHT);
+        pLabel.setHorizontalAlignment(RIGHT);
+        a = new JTextField();
+        b = new JTextField();
+        p = new JTextField();
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Choisir l'astre référent");
+        Iterator<Etoile> i = liste.iterator();
+        while (i.hasNext()) {
+          root.add(((Etoile)i.next()).construitNoeuds());
+        }
+        this.tree = new JTree(root);
+        this.tree.setEnabled(false);
+        this.tree.setPreferredSize(new Dimension(200, 200));
+        
         JPanel panSatellite= new JPanel();
         panSatellite.setBackground(Color.white);
-        panSatellite.setPreferredSize(new Dimension(395, 80));
+        panSatellite.setPreferredSize(new Dimension(445, 400));
         panSatellite.setBorder(BorderFactory.createTitledBorder("Satellite"));
-        //panSatellite.add(nomLabel);
-        //panSatellite.add(nom);
         
+        panSatellite.add(aLabel);
+        panSatellite.add(a);
+        panSatellite.add(bLabel);
+        panSatellite.add(b);
+        panSatellite.add(pLabel);
+        panSatellite.add(p);
+        panSatellite.add(tree);
         //Etoile
         xLabel = new JLabel("x : ");
         yLabel = new JLabel("y : ");
@@ -92,7 +120,7 @@ public class CreationAstre extends JDialog{
         y.setPreferredSize(new Dimension(100,25));
         JPanel panEtoile= new JPanel();
         panEtoile.setBackground(Color.white);
-        panEtoile.setPreferredSize(new Dimension(150, 80));
+        panEtoile.setPreferredSize(new Dimension(100, 400));
         panEtoile.setBorder(BorderFactory.createTitledBorder("Etoile"));
         panEtoile.setLayout(new GridLayout(2,2));
         panEtoile.add(xLabel);
@@ -110,7 +138,7 @@ public class CreationAstre extends JDialog{
         nomLabel.setPreferredSize(new Dimension(100,25));*/
         JPanel panImage= new JPanel();
         panImage.setBackground(Color.white);
-        panImage.setPreferredSize(new Dimension(220, 60));
+        panImage.setPreferredSize(new Dimension(220, 30));
         panImage.setBorder(BorderFactory.createTitledBorder("Image de l'astre"));
         panImage.add(imageLabel);
         panImage.add(image);
@@ -120,12 +148,13 @@ public class CreationAstre extends JDialog{
         annuler = new JButton("Annuler");
         JPanel panButton= new JPanel();
         panButton.setBackground(Color.white);
-        panButton.setPreferredSize(new Dimension(220, 60));
+        panButton.setPreferredSize(new Dimension(220, 30));
         panButton.add(valider);
         panButton.add(annuler);
         //Fenetre
         JPanel content = new JPanel();
         content.setLayout(new BorderLayout());
+        content.setPreferredSize(new Dimension(550,400));
         content.add(panEtoile, BorderLayout.WEST);
         content.add(panSatellite, BorderLayout.EAST);
         this.getContentPane().setLayout(new GridLayout(5,1));

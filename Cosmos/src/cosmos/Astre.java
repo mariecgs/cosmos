@@ -6,6 +6,8 @@
 package cosmos;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
@@ -26,7 +28,19 @@ public abstract class Astre {
         return new Position(0,0);
     }
     
+    public DefaultMutableTreeNode construitNoeuds(){
+        DefaultMutableTreeNode noeud = new DefaultMutableTreeNode(this);
+        Iterator<Satellite> i = this.listSatelitte.iterator();
+        while (i.hasNext()) {
+          noeud.add(((Satellite)i.next()).construitNoeuds());
+        }
+        return noeud;
+    }
     
+    @Override
+    public String toString(){
+        return this.nom;
+    }
 
 
 }
