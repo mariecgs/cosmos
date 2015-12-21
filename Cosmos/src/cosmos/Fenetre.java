@@ -75,7 +75,8 @@ public class Fenetre extends JFrame {
         this.setVisible(true); 
         listEtoile.get(0).listSatelitte.add(new Satellite("Venus","img/venus.png",100,200,999));
         while(true){
-            repaint();
+            panneau.repaint();
+           // System.out.println(listEtoile);
 
         }
         

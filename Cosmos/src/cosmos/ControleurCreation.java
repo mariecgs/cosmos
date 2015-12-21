@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
@@ -66,17 +68,36 @@ public class ControleurCreation implements ActionListener {
                 if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){	
                     image = chooser.getSelectedFile().getPath();
                 }
-                System.out.println(image);
+                //System.out.println(image);
                 window.imageLabel.setIcon(new ImageIcon(image));
   	        break;
             //Valider
             case 3 :
-                if(window.nom.getText()==null||window.x.getText()==null||window.y.getText()==null){
-                    //ERREUR
+                if (window.nom.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Vous devez choisir un nom à votre astre.", "Erreur", 0);
+                }else if (window.imageLabel.getIcon() == null){
+                    JOptionPane.showMessageDialog(null, "Vous devez choisir un fichier Image.", "Erreur", 0);
+                }else if (window.satellite.isSelected()){
+                    if (window.tree.getSelectionCount() == 0) {
+                        JOptionPane.showMessageDialog(null, "Vous devez choisir un astre référent.", "Erreur", 0);
+                    }else{
+                        try{
+                            DefaultMutableTreeNode n = (DefaultMutableTreeNode)window.tree.getLastSelectedPathComponent();
+                            Astre referent = (Astre)n.getUserObject();
+                            Satellite nouveau = new Satellite(window.nom.getText(), window.imageLabel.getText(), Integer.parseInt(window.a.getText()), Integer.parseInt(window.b.getText()), Integer.parseInt(window.p.getText()));
+                            window.dispose();
+                        }catch (Exception ex){
+                            JOptionPane.showMessageDialog(null, "Les zones de saisies doivent être des nombres." + ex.getMessage(), "Erreur", 0);
+                        }
+                    }
                 }else{
-                    //window.setVisible(false);
-                    window.dispose();
-                    window.setVisible(false);
+                    try{
+                        Etoile etoile = new Etoile(window.nom.getText(), window.imageLabel.getText(), new Position(Integer.parseInt(window.x.getText()), Integer.parseInt(window.y.getText())));
+                        window.liste.add(etoile);
+                        window.dispose();
+                    }catch (Exception ex){
+                      JOptionPane.showMessageDialog(null, "Les zones de saisies doivent être des nombres." + ex.getMessage(), "Erreur", 0);
+                    }
                 }
                 break;
             //Annuler
