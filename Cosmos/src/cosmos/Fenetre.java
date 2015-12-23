@@ -53,7 +53,7 @@ public class Fenetre extends JFrame {
         this.panneau = new BackgroundPanel(ImageIO.read(new File(fond)),this.getWidth(),this.getHeight(),listEtoile);
         //this.top.setBackground(Color.yellow);
         listEtoile.add(new Etoile("Soleil","img/soleil.png",new Position(200,200)));
-        listEtoile.get(0).listSatelitte.add(new Satellite("Terre","img/terre.png",200,100,999));
+        listEtoile.get(0).listSatelitte.add(new Satellite("Terre","img/terre.png",200,180,1050));
         
         this.panneau.setLayout(null); 
         setContentPane(this.panneau);
@@ -73,7 +73,7 @@ public class Fenetre extends JFrame {
         creer.addActionListener(control);
         supprimer.addActionListener(control);
         this.setVisible(true); 
-        listEtoile.get(0).listSatelitte.add(new Satellite("Venus","img/venus.png",100,200,999));
+        listEtoile.get(0).listSatelitte.add(new Satellite("Venus","img/venus.png",300,250,2000));
         while(true){
             panneau.repaint();
            // System.out.println(listEtoile);
