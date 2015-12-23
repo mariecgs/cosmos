@@ -70,6 +70,8 @@ public class ControleurCreation implements ActionListener {
                 }
                 //System.out.println(image);
                 window.imageLabel.setIcon(new ImageIcon(image));
+                image=image.substring(image.indexOf("img\\")+4);
+                window.imagePath="img/"+image;
   	        break;
             //Valider
             case 3 :
@@ -84,7 +86,8 @@ public class ControleurCreation implements ActionListener {
                         try{
                             DefaultMutableTreeNode n = (DefaultMutableTreeNode)window.tree.getLastSelectedPathComponent();
                             Astre referent = (Astre)n.getUserObject();
-                            Satellite nouveau = new Satellite(window.nom.getText(), window.imageLabel.getText(), Integer.parseInt(window.a.getText()), Integer.parseInt(window.b.getText()), Integer.parseInt(window.p.getText()));
+                            Satellite nouveau = new Satellite(window.nom.getText(), window.imagePath, Integer.parseInt(window.a.getText()), Integer.parseInt(window.b.getText()), Integer.parseInt(window.p.getText()));
+                            referent.listSatellite.add(nouveau);
                             window.dispose();
                         }catch (Exception ex){
                             JOptionPane.showMessageDialog(null, "Les zones de saisies doivent être des nombres." + ex.getMessage(), "Erreur", 0);
@@ -92,7 +95,7 @@ public class ControleurCreation implements ActionListener {
                     }
                 }else{
                     try{
-                        Etoile etoile = new Etoile(window.nom.getText(), window.imageLabel.getText(), new Position(Integer.parseInt(window.x.getText()), Integer.parseInt(window.y.getText())));
+                        Etoile etoile = new Etoile(window.nom.getText(), window.imagePath, new Position(Integer.parseInt(window.x.getText()), Integer.parseInt(window.y.getText())));
                         window.liste.add(etoile);
                         window.dispose();
                     }catch (Exception ex){

@@ -23,7 +23,7 @@ public class Cosmos {
         
         ArrayList<Etoile> listEtoile = new ArrayList();
         listEtoile.add(new Etoile("Soleil","",new Position(200,200)));
-        listEtoile.get(0).listSatelitte.add(new Satellite("Terre","",50,50,999));
+        listEtoile.get(0).listSatellite.add(new Satellite("Terre","",50,50,999));
     }
 
 }

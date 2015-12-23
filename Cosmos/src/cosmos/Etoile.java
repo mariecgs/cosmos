@@ -5,6 +5,9 @@
  */
 package cosmos;
 
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Marie Cogis David Goncalves
@@ -20,5 +23,16 @@ public class Etoile extends Astre {
     @Override
     protected Position getPosition(Astre a){
         return this.pos;
+    }
+
+    void draw(BackgroundPanel b,Graphics g) {
+        System.out.println("Etoile -> "+this+"  "+this.image);
+        ImageIcon img=new ImageIcon(this.image);
+        img.paintIcon(b, g, this.pos.x-(img.getIconWidth()/2), this.pos.y-(img.getIconHeight()/2));
+        if(listSatellite!=null&& !listSatellite.isEmpty()){
+            for(Satellite s : this.listSatellite){
+                s.draw(b,g,this);
+            }  
+        }
     }
 }

@@ -37,6 +37,7 @@ public class CreationAstre extends JDialog{
     JButton image, valider, annuler;
     JFrame parent;
     JTree tree;
+    String imagePath;
     ArrayList<Etoile> liste;
     
     public CreationAstre(JFrame parent, String title, boolean modal,ArrayList liste){
@@ -46,6 +47,7 @@ public class CreationAstre extends JDialog{
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.liste=liste;
+        this.imagePath="";
         //this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         this.initComponent();
         

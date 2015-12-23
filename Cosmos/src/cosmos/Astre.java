@@ -14,12 +14,12 @@ import javax.swing.tree.DefaultMutableTreeNode;
  * @author Marie Cogis David Goncalves
  */
 public abstract class Astre {
-    ArrayList<Satellite> listSatelitte;
+    ArrayList<Satellite> listSatellite;
     String image;
     String nom;
     
     public Astre(String nom, String image) {
-        this.listSatelitte = new ArrayList();
+        this.listSatellite = new ArrayList();
         this.nom = nom;
         this.image = image;
     }
@@ -30,7 +30,7 @@ public abstract class Astre {
     
     public DefaultMutableTreeNode construitNoeuds(){
         DefaultMutableTreeNode noeud = new DefaultMutableTreeNode(this);
-        Iterator<Satellite> i = this.listSatelitte.iterator();
+        Iterator<Satellite> i = this.listSatellite.iterator();
         while (i.hasNext()) {
           noeud.add(((Satellite)i.next()).construitNoeuds());
         }

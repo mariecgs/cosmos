@@ -9,7 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -51,15 +50,8 @@ public class BackgroundPanel extends JPanel {
           return;
         }
         g.drawImage(image, 0, 0, width, height, this);
-
-
         for(Etoile e : listEtoile){
-            ImageIcon img=new ImageIcon(e.image);
-            img.paintIcon(this, g, e.pos.x-(img.getIconWidth()/2), e.pos.y-(img.getIconHeight()/2));
-            for(Satellite s : e.listSatelitte){
-                img=new ImageIcon(s.image);
-                img.paintIcon(this, g, s.getPosition(e).x-(img.getIconWidth()/2), s.getPosition(e).y-(img.getIconHeight()/2));
-            }
+            e.draw(this,g);
         }
     }
 }
