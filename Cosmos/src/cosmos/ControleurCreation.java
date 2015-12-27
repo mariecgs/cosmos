@@ -85,9 +85,9 @@ public class ControleurCreation implements ActionListener {
                     }else{
                         try{
                             DefaultMutableTreeNode n = (DefaultMutableTreeNode)window.tree.getLastSelectedPathComponent();
-                            Astre referent = (Astre)n.getUserObject();
-                            Satellite nouveau = new Satellite(window.nom.getText(), window.imagePath, Integer.parseInt(window.a.getText()), Integer.parseInt(window.b.getText()), Integer.parseInt(window.p.getText()));
-                            referent.listSatellite.add(nouveau);
+                            Astre parent = (Astre)n.getUserObject();
+                            Satellite nouveau = new Satellite(window.nom.getText(), window.imagePath, Integer.parseInt(window.a.getText()), Integer.parseInt(window.b.getText()), Integer.parseInt(window.p.getText()),parent);
+                            parent.listSatellite.add(nouveau);
                             window.dispose();
                         }catch (Exception ex){
                             JOptionPane.showMessageDialog(null, "Les zones de saisies doivent être des nombres." + ex.getMessage(), "Erreur", 0);

@@ -193,7 +193,7 @@ public class CreationAstre extends JDialog{
         }
     }
 
-    public Astre ajoutAstre() {
+    /*public Astre ajoutAstre() {
         if(etoile.isSelected()){
             return new Etoile(nom.getText(),"img/venus.png",new Position( Integer.parseInt(x.getText()), Integer.parseInt(y.getText()) ));
         }else if(satellite.isSelected()){
@@ -201,5 +201,5 @@ public class CreationAstre extends JDialog{
         }else{
             return new Etoile("err","",new Position(0,0));
         }
-    }
+    }*/
 }

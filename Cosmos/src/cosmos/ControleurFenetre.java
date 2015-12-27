@@ -7,7 +7,19 @@ package cosmos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
@@ -26,17 +38,51 @@ public class ControleurFenetre implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
        int btn=window.quelItem(ae);
        CreationAstre creation;
+       SuppressionAstre suppression;
+       EnregistrementAstre enregistrement;
+       //OuvrirAstre ouvrir;
        switch(btn){
            //OUVRIR
            case 0 :
-               break;
+                //ouvrir = new OuvrirAstre(null,"Ouvrir Astre",true,listEtoile);
+                JFileChooser chooser = new JFileChooser();//création dun nouveau filechosser
+                chooser.setApproveButtonText("Ouvrir"); //intitulé du bouton
+                //chooser.setCurrentDirectory(null);
+                //chooser.showOpenDialog(null); //affiche la boite de dialogue
+                String path="";
+                if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){	
+                    path = chooser.getSelectedFile().getPath();
+                }
+                try {
+                    FileInputStream fileIn = new FileInputStream(path);
+                    ObjectInputStream in = new ObjectInputStream(fileIn);
+                    Astre a = (Astre) in.readObject();
+                    in.close();
+                    fileIn.close();
+                    if(a.getClass()==Etoile.class){ //Etoile
+                        Etoile e=(Etoile) a;
+                        listEtoile.add(e);
+                        
+                    }else if(a.getClass()==Satellite.class){//Satellite
+                        Satellite s=(Satellite) a;
+                        s.parent.listSatellite.add(s);
+                        
+                    }
+                    
+                }catch (IOException exception){
+                    System.out.println ( "Erreur lors de la lecture : " + exception.getMessage());
+                } catch (ClassNotFoundException ex) {
+           Logger.getLogger(ControleurFenetre.class.getName()).log(Level.SEVERE, null, ex);
+       }
+                break;
            //ENREGISTRER    
             case 1 :
-               break;
+                enregistrement = new EnregistrementAstre(null,"Enregistrement Astre",true,listEtoile);
+                break;
             //QUITTER
             case 2 :
-               System.exit(0);
-               break;
+                System.exit(0);
+                break;
             //CREER ASTRE
             case 3 :
                 creation = new CreationAstre(null,"Création Astre",true,listEtoile);
@@ -46,10 +92,11 @@ public class ControleurFenetre implements ActionListener {
                 }else{
                 //satelitte 
                 }*/
-               break;
+                break;
             //SUPPRIMER ASTRE
             case 4 :
-               break;
+                suppression = new SuppressionAstre(null,"Suppression Astre",true,listEtoile);
+                break;
             
                
                        

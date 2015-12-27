@@ -5,11 +5,13 @@
  */
 package cosmos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Marie Cogis David Goncalves
  */
-public class Position {
+public class Position implements Serializable{
     int x;
     int y;
 
