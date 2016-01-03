@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JTree;
+import static javax.swing.SwingConstants.LEFT;
 import static javax.swing.SwingConstants.RIGHT;
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -43,7 +44,7 @@ public class CreationAstre extends JDialog{
     public CreationAstre(JFrame parent, String title, boolean modal,ArrayList liste){
         super(parent, title, modal);
         this.parent=parent;
-        this.setSize(550, 500);
+        this.setSize(550, 600);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.liste=liste;
@@ -81,13 +82,22 @@ public class CreationAstre extends JDialog{
         //Satellite
         aLabel = new JLabel("demi-grand axe : ");
         bLabel = new JLabel("demi-petit axe : ");
-        pLabel = new JLabel("periode : ");
-        aLabel.setHorizontalAlignment(RIGHT);
-        bLabel.setHorizontalAlignment(RIGHT);
-        pLabel.setHorizontalAlignment(RIGHT);
+        pLabel = new JLabel("période : ");
+        aLabel.setHorizontalAlignment(LEFT);
+        bLabel.setHorizontalAlignment(LEFT);
+        pLabel.setHorizontalAlignment(LEFT);
         a = new JTextField();
+        a.setPreferredSize(new Dimension(50,20));
         b = new JTextField();
+        b.setPreferredSize(new Dimension(50,20));
         p = new JTextField();
+        p.setPreferredSize(new Dimension(50,20));
+        this.a.setEnabled(false);
+        this.b.setEnabled(false);
+        this.p.setEnabled(false);
+        this.aLabel.setEnabled(false);
+        this.bLabel.setEnabled(false);
+        this.pLabel.setEnabled(false);
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Choisir l'astre référent");
         Iterator<Etoile> i = liste.iterator();
         while (i.hasNext()) {
@@ -95,25 +105,34 @@ public class CreationAstre extends JDialog{
         }
         this.tree = new JTree(root);
         this.tree.setEnabled(false);
-        this.tree.setPreferredSize(new Dimension(200, 200));
+        this.tree.setPreferredSize(new Dimension(217, 320));
         
         JPanel panSatellite= new JPanel();
+        JPanel panSatellite1= new JPanel();
+        JPanel panSatellite2= new JPanel();
         panSatellite.setBackground(Color.white);
         panSatellite.setPreferredSize(new Dimension(445, 400));
+        panSatellite.setLayout(new GridLayout(1,2));
+        panSatellite1.setBackground(Color.white);
+        panSatellite2.setBackground(Color.white);
+        panSatellite1.setLayout(new GridLayout(6,2));
         panSatellite.setBorder(BorderFactory.createTitledBorder("Satellite"));
         
-        panSatellite.add(aLabel);
-        panSatellite.add(a);
-        panSatellite.add(bLabel);
-        panSatellite.add(b);
-        panSatellite.add(pLabel);
-        panSatellite.add(p);
-        panSatellite.add(tree);
+        panSatellite1.add(aLabel);
+        panSatellite1.add(a);
+        panSatellite1.add(bLabel);
+        panSatellite1.add(b);
+        panSatellite1.add(pLabel);
+        panSatellite1.add(p);
+        panSatellite2.add(tree);
+        panSatellite.add(panSatellite1);
+        panSatellite.add(panSatellite2);
+
         //Etoile
         xLabel = new JLabel("x : ");
         yLabel = new JLabel("y : ");
-        xLabel.setHorizontalAlignment(RIGHT);
-        yLabel.setHorizontalAlignment(RIGHT);
+        xLabel.setHorizontalAlignment(LEFT);
+        yLabel.setHorizontalAlignment(LEFT);
         x = new JTextField();
         y = new JTextField();
        // xLabel.setPreferredSize(new Dimension(50,25));
@@ -124,7 +143,7 @@ public class CreationAstre extends JDialog{
         panEtoile.setBackground(Color.white);
         panEtoile.setPreferredSize(new Dimension(100, 400));
         panEtoile.setBorder(BorderFactory.createTitledBorder("Etoile"));
-        panEtoile.setLayout(new GridLayout(2,2));
+        panEtoile.setLayout(new GridLayout(6,1));
         panEtoile.add(xLabel);
         panEtoile.add(x);
         panEtoile.add(yLabel);
@@ -159,12 +178,18 @@ public class CreationAstre extends JDialog{
         content.setPreferredSize(new Dimension(550,400));
         content.add(panEtoile, BorderLayout.WEST);
         content.add(panSatellite, BorderLayout.EAST);
-        this.getContentPane().setLayout(new GridLayout(5,1));
-        this.getContentPane().add(panNom);
-        this.getContentPane().add(panType);
+        this.getContentPane().setLayout(new GridLayout(3,1));
+        JPanel top = new JPanel();
+        JPanel bottom = new JPanel();
+        top.setLayout(new GridLayout(2,1));
+        bottom.setLayout(new GridLayout(2,1));
+        top.add(panNom);
+        top.add(panType);
+        bottom.add(panImage);
+        bottom.add(panButton);
+        this.getContentPane().add(top);
         this.getContentPane().add(content);
-        this.getContentPane().add(panImage);
-        this.getContentPane().add(panButton);
+        this.getContentPane().add(bottom);
         
         ControleurCreation control = new ControleurCreation(this);
         etoile.addActionListener(control);
