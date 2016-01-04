@@ -26,7 +26,6 @@ public class Etoile extends Astre {
     }
 
     void draw(BackgroundPanel b,Graphics g) {
-        //System.out.println("Etoile -> "+this+"  "+this.image);
         ImageIcon img=new ImageIcon(this.image);
         img.paintIcon(b, g, this.pos.x-(img.getIconWidth()/2), this.pos.y-(img.getIconHeight()/2));
         if(listSatellite!=null&& !listSatellite.isEmpty()){

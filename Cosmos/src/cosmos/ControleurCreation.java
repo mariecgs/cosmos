@@ -7,10 +7,8 @@ package cosmos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -61,14 +59,10 @@ public class ControleurCreation implements ActionListener {
             //Image
             case 2 :
                 JFileChooser chooser = new JFileChooser();//création dun nouveau filechosser
-               // chooser.setApproveButtonText(); //intitulé du bouton
-                //chooser.setCurrentDirectory(null);
-                //chooser.showOpenDialog(null); //affiche la boite de dialogue
                 String image="img/";
                 if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){	
                     image = chooser.getSelectedFile().getPath();
                 }
-                //System.out.println(image);
                 window.imageLabel.setIcon(new ImageIcon(image));
                 image=image.substring(image.indexOf("img\\")+4);
                 window.imagePath="img/"+image;

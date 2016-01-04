@@ -42,10 +42,4 @@ public abstract class Astre implements Serializable {
     public String toString(){
         return this.nom;
     }
-
-    String serializer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
 }

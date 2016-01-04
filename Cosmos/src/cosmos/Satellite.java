@@ -44,7 +44,6 @@ public class Satellite extends Astre {
     }
     
     void draw(BackgroundPanel b, Graphics g, Astre e) {
-        //System.out.println("Etoile -> Satellite ->"+this+"  "+this.image);
         ImageIcon img;
         img=new ImageIcon(this.image);
         img.paintIcon(b, g, this.getPosition().x-(img.getIconWidth()/2), this.getPosition().y-(img.getIconHeight()/2));

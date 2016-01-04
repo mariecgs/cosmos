@@ -49,7 +49,6 @@ public class CreationAstre extends JDialog{
         this.setResizable(false);
         this.liste=liste;
         this.imagePath="";
-        //this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         this.initComponent();
         
     }
@@ -135,8 +134,6 @@ public class CreationAstre extends JDialog{
         yLabel.setHorizontalAlignment(LEFT);
         x = new JTextField();
         y = new JTextField();
-       // xLabel.setPreferredSize(new Dimension(50,25));
-       // yLabel.setPreferredSize(new Dimension(50,25));
         x.setPreferredSize(new Dimension(100,25));
         y.setPreferredSize(new Dimension(100,25));
         JPanel panEtoile= new JPanel();
@@ -155,8 +152,7 @@ public class CreationAstre extends JDialog{
         //Image 
         imageLabel = new JLabel(new ImageIcon());
         image = new JButton("Fichier Image");
-        /*nomLabel = new JLabel("Saisir un nom :");
-        nomLabel.setPreferredSize(new Dimension(100,25));*/
+    
         JPanel panImage= new JPanel();
         panImage.setBackground(Color.white);
         panImage.setPreferredSize(new Dimension(220, 30));
@@ -217,14 +213,4 @@ public class CreationAstre extends JDialog{
             return -1;
         }
     }
-
-    /*public Astre ajoutAstre() {
-        if(etoile.isSelected()){
-            return new Etoile(nom.getText(),"img/venus.png",new Position( Integer.parseInt(x.getText()), Integer.parseInt(y.getText()) ));
-        }else if(satellite.isSelected()){
-            return new Satellite("","",0,0,0);
-        }else{
-            return new Etoile("err","",new Position(0,0));
-        }
-    }*/
 }
