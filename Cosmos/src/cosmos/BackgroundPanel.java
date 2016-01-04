@@ -25,10 +25,10 @@ public class BackgroundPanel extends JPanel {
   
     /**
      *
-     * @param image
-     * @param width
-     * @param height
-     * @param listEtoile
+     * @param Image image
+     * @param int width
+     * @param int height
+     * @param ArrayList listEtoile
      */
     public BackgroundPanel(Image image,int width,int height,ArrayList listEtoile){
         this.image = image;
@@ -39,10 +39,19 @@ public class BackgroundPanel extends JPanel {
         repaint();
     }
   
+    /**
+     *
+     * @param JComponent component
+     */
     public void add(JComponent component){
         add(component, null);
     }
 
+    
+    /**
+     *
+     * @param Graphics g
+     */
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
